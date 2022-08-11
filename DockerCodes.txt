@@ -1,0 +1,154 @@
+﻿db.KOLEKSIYON.find();
+Metot çalıştırıldığında koleksiyonda yer alan veriler listelenir.
+
+db.kisiler.find();
+Verileri anlaşılır bir şekilde listelemek için pretty metodu kullanılır.
+
+db.kisiler.find().pretty();
+Veri sayısını almak için length metodu kullanılır.
+
+db.kisiler.find().length();
+Verileri belirli bir alana göre sıralamak için sort metodu kullanılır.
+
+db.tablo.find().sort({ adi: 1 });
+Verileri ters olarak sıralamak için -1 değeri kullanılır.
+
+db.tablo.find().sort({ adi: -1 });
+İlk veriyi almak için findOne metodu kullanılır.
+
+db.kisiler.findOne();
+Veri içindeki bir alanı almak için alan adının yazılması yeterli olacaktır.
+
+db.kisiler.findOne().adi;
+db.kisiler.find()[0].adi;
+Alınan veri sayısına sınır koymak için limit metodu kullanılır.
+
+db.kisiler.find().limit(3);
+Bellirli bir kayıttan sonrasını listelemek için skip komutu kullanılır.
+
+db.kisiler.find().skip(2);
+İki metot birlikte kullanılarak belirli aralıkta bulunan kayıtlar listelenebilir.
+
+db.kisiler.find().skip(2).limit(3);
+Veri sorgulama
+Veri listelemek için kullanılan find metodu veri sorgulamak içinde kullanılır.
+
+Aranan değerler parametre olarak metoda gönderilir.
+
+db.kisiler.find({
+  adi: "Yusuf"
+});
+Birden fazla değer ile de arama yapılabilir.
+
+db.kisiler.find({
+  adi: "Yusuf",
+  soyadi: "SEZER"
+});
+Benzer sorgu işlemi findOne metodu içinde geçerlidir.
+
+Sorguda değerin küçükse, büyük olması gibi farklı durumlar için çeşitli anahtar kelimeler kullanılır.
+
+Aranan değer eşitse herhangi bir şey kullanılmaz.
+
+db.kisiler.find({
+  maas: 1000
+});
+Aranan değer küçükse $lt kullanılır.
+
+db.kisiler.find({
+  maas: { $lt: 1000 }
+});
+Aranan değer küçük eşitse $lte kullanılır.
+
+db.kisiler.find({
+  maas: { $lte: 1000 }
+});
+Aranan değer büyükse $gt kullanılır.
+
+db.kisiler.find({
+  maas: { $gt: 1000 }
+});
+Aranan değer büyük eşitse $gte kullanılır.
+
+db.kisiler.find({
+  maas: { $gte: 1000 }
+});
+Aranan değer eşit değilse $ne kullanılır.
+
+db.kisiler.find({
+  maas: { $ne: 1000 }
+});
+Aramayı or ve and mantıksal operatörüne göre yapmak için $or ve $and parametreleri kullanılır.
+
+db.kisiler.find({
+  $or: [{ maas: 1000 }, { yas: 25 }]
+});
+Belirli sütunları listelemek için find metodunun ikinci parametresine listelenecek sütunlar yazılır.
+
+db.kisiler.find({}, { _id: 0, adi: 1 });
+Sadece adi alanındaki değerler listelenecektir.
+
+db.kisiler.find(
+  { maas: { $lt: 1000 } },
+  { _id: 0, adi: 1 }
+);
+Arama sonucunda maas değeri 1000 altındaki verilerin adi alanın listelenecektir.
+
+
+
+********************************LINQ*******************************************************
+using MongoDB.Driver;
+using MongoDB101.API.Model;
+using MongoDB101.API.Settings;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace MongoDB101.API.Service
+{
+    public class UserService
+    {
+        private IDbSettings _settings;
+        private IMongoCollection<User> _user;
+
+        public UserService(IDbSettings settings)
+        {
+            _settings = settings;
+            MongoClient client = new MongoClient(settings.ConnectionString);
+            var db = client.GetDatabase(settings.Database);
+            _user = db.GetCollection<User>(settings.Collection);
+        }
+
+
+        //Tümünü Listeleme
+        public List<User> GetAll()
+        {
+            return _user.Find(u => true).ToList();
+        }
+
+        //Tek bir kullanıcı getirme
+        public User GetSingle(string id)
+        {
+            return _user.Find(u => u.Id == id).FirstOrDefault();
+        }
+
+        //Kullanıcı ekleme
+        public User Add(User user)
+        {
+            _user.InsertOne(user);
+            return user;
+        }
+
+        //Kullanıcı güncelleme
+        public long Update(User currentUser)
+        {
+            return _user.ReplaceOne(u => u.Id == currentUser.Id, currentUser).ModifiedCount;
+        }
+        
+        //Kullanıcı silme
+        public long Delete(string id)
+        {
+            return _user.DeleteOne(u => u.Id == id).DeletedCount;
+        }
+
+    }
+}
