@@ -1,4 +1,4 @@
-version: '3.4'
+﻿version: '3.4'
 
 services:
   sourcingdb:
@@ -22,12 +22,14 @@ services:
       - "1433:1433"
     environment:
       SA_PASSWORD: "Odb12345678"
+       #MSSQL_SA_PASSWORD: "Odb12345678"
       ACCEPT_EULA: "Y"
 
   esourcing.products:
     container_name: esourcingproducts
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      #Kayıt Bilgileri appsettings.Json dosyasından çekiyor
       - "ProductDatabaseSettings:ConnectionString=mongodb://sourcingdb:27017"
     depends_on:
         - sourcingdb

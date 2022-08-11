@@ -10,7 +10,7 @@ namespace Ordering.Domain.Entities.Base
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public virtual int Id { get; protected set; }
 
-        public Entity Clone()
+        public Entity Clone()//başka yerden çağırdığında çoğaltmak için kullanıyoruz. Order.Clone() ile çağaltabiliyoruz
         {
             return (Entity)this.MemberwiseClone();
         }

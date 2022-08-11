@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Ordering.Infrastructure.Repositories
 {
-    public class OrderRepository : Repository<Order>, IOrderRepository
+    public class OrderRepository : Repository<Order>, IOrderRepository// iki tane repository implemantasyonu
     {
-        public OrderRepository(OrderContext dbContext) : base(dbContext)
+        public OrderRepository(OrderContext dbContext) : base(dbContext)//Repository de constructor dbContex bekliyor. bu yüzden burdan tanımlama yapıyoruz. base ise Repository e git anlamında
         {
 
         }

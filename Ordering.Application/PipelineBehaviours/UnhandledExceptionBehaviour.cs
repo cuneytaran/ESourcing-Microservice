@@ -22,9 +22,9 @@ namespace Ordering.Application.PipelineBehaviours
         {
             try
             {
-                return await next();
+                return await next();//işlemler bittiğinde  geri dön.
             }
-            catch (Exception ex)
+            catch (Exception ex)//eğer hata varsa logla
             {
                 var requestName = typeof(TRequest).Name;
 

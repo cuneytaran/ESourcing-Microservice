@@ -30,19 +30,23 @@ namespace ESourcing.Order.Consumers
 
         public void Consume()
         {
+            //rabbitMQ ile bağlantılı olup olmadığını kontrol ediyor.
             if (!_persistentConnection.IsConnected)
             {
-                _persistentConnection.TryConnect();
+                _persistentConnection.TryConnect();//connect olmaya zorla
             }
 
+            //Q yu kontrol etme oluşturuluyor
+            //Q nun ismi OrderCreateQueue den çekiliyor
             var channel = _persistentConnection.CreateModel();
             channel.QueueDeclare(queue: EventBusConstants.OrderCreateQueue, durable: false, exclusive: false, autoDelete: false, arguments: null);
 
+            //EventingBasicConsumer=rabbitmq ile gelen kütüphane. Nesneyi oluşturmayı sağlıyor.Q yu yönetmeyi sağlıyor
             var consumer = new EventingBasicConsumer(channel);
 
-            consumer.Received += ReceivedEvent;
+            consumer.Received += ReceivedEvent;//gelen eventi işleyeceği bir custom event ayarlıyoruz
 
-            channel.BasicConsume(queue: EventBusConstants.OrderCreateQueue, autoAck: true, consumer: consumer);
+            channel.BasicConsume(queue: EventBusConstants.OrderCreateQueue, autoAck: true, consumer: consumer);//consume etmeye başlıyor
         }
 
         private async void ReceivedEvent(object sender, BasicDeliverEventArgs e)
@@ -53,18 +57,18 @@ namespace ESourcing.Order.Consumers
             if(e.RoutingKey == EventBusConstants.OrderCreateQueue)
             {
                 var command = _mapper.Map<OrderCreateCommand>(@event);
-
+                //içinde ekstra değişikliklik yapılması gereken şeyler değiştiriliyor
                 command.CreatedAt = DateTime.Now;
                 command.TotalPrice = @event.Quantity * @event.Price;
                 command.UnitPrice = @event.Price;
 
-                var result = await _mediator.Send(command);
+                var result = await _mediator.Send(command);//gelen mesajı mediatr üzerinden veritabanına insert yapma
             }
         }
 
         public void Disconnect()
         {
-            _persistentConnection.Dispose();
+            _persistentConnection.Dispose();//connection kapatma işlemi
         }
     }
 }

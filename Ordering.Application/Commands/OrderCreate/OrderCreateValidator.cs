@@ -13,7 +13,7 @@ namespace Ordering.Application.Commands.OrderCreate
         {
             RuleFor(v => v.SellerUserName)
                 .EmailAddress()
-                .NotEmpty();
+                .NotEmpty();//SellerUserName den gelen veri email olacak ve boş olmayacak
 
             RuleFor(v => v.ProductId)
                 .NotEmpty();

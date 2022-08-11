@@ -12,7 +12,8 @@ using System.Threading.Tasks;
 
 namespace Ordering.Application.Handlers
 {
-    public class GetOrdersByUserNameHandler : IRequestHandler<GetOrdersBySellerUsernameQuery, IEnumerable<OrderResponse>>
+    public class GetOrdersByUserNameHandler : IRequestHandler<GetOrdersBySellerUsernameQuery, IEnumerable<OrderResponse>>//using MediatR = gelen bilgi ve gönderilen bilgi olarak ayarlama yapabiliyorsun
+    {
     {
         private readonly IOrderRepository _orderRepository;
         private readonly IMapper _mapper;
@@ -27,7 +28,7 @@ namespace Ordering.Application.Handlers
         {
             var orderList = await _orderRepository.GetOrdersBySellerUserName(request.UserName);
 
-            var response = _mapper.Map<IEnumerable<OrderResponse>>(orderList);
+            var response = _mapper.Map<IEnumerable<OrderResponse>>(orderList);//mapperin liste şeklinde yapılması
 
             return response;
         }

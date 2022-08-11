@@ -10,13 +10,13 @@ namespace ESourcing.Order.Extensions
     {
         public static IHost MigrateDatabase(this IHost host)
         {
-            using (var scope = host.Services.CreateScope())
+            using (var scope = host.Services.CreateScope())//var scope =ilgili servis üzerindeki katmanını ulaşıp istediğimiz servisi çağırma
             {
                 try
                 {
-                    var orderContext = scope.ServiceProvider.GetRequiredService<OrderContext>();
+                    var orderContext = scope.ServiceProvider.GetRequiredService<OrderContext>();//servislerin altından OrderContext oluştur ve getir
 
-                    if(orderContext.Database.ProviderName != "Microsoft.EntityFrameworkCore.InMemory")
+                    if (orderContext.Database.ProviderName != "Microsoft.EntityFrameworkCore.InMemory")
                     {
                         orderContext.Database.Migrate();
                     }

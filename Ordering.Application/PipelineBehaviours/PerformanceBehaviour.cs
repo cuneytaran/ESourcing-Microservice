@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Ordering.Application.PipelineBehaviours
 {
-    public class PerformanceBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+    public class PerformanceBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>//işlemi nekadar sürede halleder. loglama
     {
         private readonly Stopwatch _timer;
         private readonly ILogger<TRequest> _logger;
@@ -31,7 +31,7 @@ namespace Ordering.Application.PipelineBehaviours
 
             var elapsedMilliseconds = _timer.ElapsedMilliseconds;
 
-            if(elapsedMilliseconds > 500)
+            if(elapsedMilliseconds > 500)//500 milisaniyeye geçtiyse loglama yapılacak
             {
                 var requestName = typeof(TRequest).Name;
 

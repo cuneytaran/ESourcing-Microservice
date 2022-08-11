@@ -12,10 +12,10 @@ namespace ESourcing.Order.Extensions
         public static IApplicationBuilder UseRabbitListener(this IApplicationBuilder app)
         {
             Listener = app.ApplicationServices.GetService<EventBusOrderCreateConsumer>();
-            var life = app.ApplicationServices.GetService<IHostApplicationLifetime>();
+            var life = app.ApplicationServices.GetService<IHostApplicationLifetime>();//aplication ayağa kalktığında çalışmasını, daha sonra durdurmasını connectionun dispose yapılmasını sağlıyor.
 
-            life.ApplicationStarted.Register(OnStarted);
-            life.ApplicationStopping.Register(OnStopping);
+            life.ApplicationStarted.Register(OnStarted);//çalıştırma
+            life.ApplicationStopping.Register(OnStopping);//durdurma
 
             return app;
         }

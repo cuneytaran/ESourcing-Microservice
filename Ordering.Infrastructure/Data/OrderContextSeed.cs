@@ -11,9 +11,9 @@ namespace Ordering.Infrastructure.Data
     {
         public static async Task SeedAsync(OrderContext orderContext)
         {
-            if (!orderContext.Orders.Any())
+            if (!orderContext.Orders.Any())//veritabanı boş ise
             {
-                orderContext.Orders.AddRange(GetPreconfiguredOrders());
+                orderContext.Orders.AddRange(GetPreconfiguredOrders());//gelen liste işlem yapılana kadar veritabanında güncellenmeyecek
 
                 await orderContext.SaveChangesAsync();
             }

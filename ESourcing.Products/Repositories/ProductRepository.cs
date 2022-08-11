@@ -18,19 +18,24 @@ namespace ESourcing.Products.Repositories
 
         public async Task Create(Product product)
         {
+            //InsertManyAsync=birden çok kayıtlar için liste yani
+            //InsertOneAsync = tek bir produck kayıt için
             await _context.Products.InsertOneAsync(product);
         }
 
         public async Task<bool> Delete(string id)
         {
+            //aşağıdaki sorgular monodb için           
             var filter = Builders<Product>.Filter.Eq(m => m.Id, id);
             DeleteResult deleteResult = await _context.Products.DeleteOneAsync(filter);
 
+            //IsAcknowledged=işlem başarılı ise
             return deleteResult.IsAcknowledged && deleteResult.DeletedCount > 0;
         }
 
         public async Task<Product> GetProduct(string id)
         {
+ 
             return await _context.Products.Find(p => p.Id == id).FirstOrDefaultAsync();
         }
 
@@ -42,6 +47,7 @@ namespace ESourcing.Products.Repositories
 
         public async Task<IEnumerable<Product>> GetProductByName(string name)
         {
+            //ElemMatch=eleme işlemi yapıyor
             var filter = Builders<Product>.Filter.ElemMatch(p => p.Name, name);
             return await _context.Products.Find(filter).ToListAsync();
         }
@@ -53,6 +59,7 @@ namespace ESourcing.Products.Repositories
 
         public async Task<bool> Update(Product product)
         {
+            //aşağıdaki sorgular monodb için
             var updateResult = await _context.Products.ReplaceOneAsync(filter: g => g.Id == product.Id, replacement: product);
             return updateResult.IsAcknowledged && updateResult.ModifiedCount > 0;
         }

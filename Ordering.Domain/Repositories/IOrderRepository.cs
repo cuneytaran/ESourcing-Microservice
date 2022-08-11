@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Ordering.Domain.Repositories
 {
-    public interface IOrderRepository : IRepository<Order>
+    public interface IOrderRepository : IRepository<Order>// Order ile ilgili işlem yapacak anlamında. Yani sadece Ordar a özgü olacak
     {
         Task<IEnumerable<Order>> GetOrdersBySellerUserName(string userName);
     }

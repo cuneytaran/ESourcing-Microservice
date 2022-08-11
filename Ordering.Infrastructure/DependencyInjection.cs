@@ -14,17 +14,21 @@ using System.Threading.Tasks;
 
 namespace Ordering.Infrastructure
 {
-    public static class DependencyInjection
+    public static class DependencyInjection//startup.cs işlemini burada yapıyoruz.
     {
-        public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)//IConfiguration=program.cs ye ulaşmak için IServiceCollection=program.cs deki servilere ulaşmak için
         {
+            //tüm configurasyonları ve servisleri bu metot altında toplayacaz. startup.cs için yazmıyoruz.
+
             //services.AddDbContext<OrderContext>(opt => opt.UseInMemoryDatabase(databaseName: "InMemoryDb"),
             //                                    ServiceLifetime.Singleton,
             //                                    ServiceLifetime.Singleton);
 
+            //MSSQL Server bilgisi tanımlanıyor
             services.AddDbContext<OrderContext>(options =>
                     options.UseSqlServer(
                         configuration.GetConnectionString("OrderConnection"),
+                        //MigrationsAssembly=migration işlemi yapmak için kullanıyoruz
                         b => b.MigrationsAssembly(typeof(OrderContext).Assembly.FullName)), ServiceLifetime.Singleton);
 
             //Add Repositories

@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Ordering.Application.Handlers
 {
-    public class OrderCreateHandler : IRequestHandler<OrderCreateCommand, OrderResponse>
+    public class OrderCreateHandler : IRequestHandler<OrderCreateCommand, OrderResponse>//OrderCreateCommand=gelen bilgi, OrderResponse = dönen bilgi
     {
         private readonly IOrderRepository _orderRepository;
         private readonly IMapper _mapper;
@@ -28,7 +28,7 @@ namespace Ordering.Application.Handlers
 
         public async Task<OrderResponse> Handle(OrderCreateCommand request, CancellationToken cancellationToken)
         {
-            var orderEntity = _mapper.Map<Order>(request);
+            var orderEntity = _mapper.Map<Order>(request);//OrderCreateCommand dan Order e veri akacak
             if (orderEntity == null)
                 throw new ApplicationException("Entity could not be mapped!");
 

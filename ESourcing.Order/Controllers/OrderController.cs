@@ -16,7 +16,7 @@ namespace ESourcing.Order.Controllers
     [ApiController]
     public class OrderController : ControllerBase
     {
-        private readonly IMediator _mediator;
+        private readonly IMediator _mediator;//Gevşek bağlıdır. yani depency olmadan katmanları çalıştırma ve erişme
         private readonly ILogger<OrderController> _logger;
 
         public OrderController(IMediator mediator, ILogger<OrderController> logger)

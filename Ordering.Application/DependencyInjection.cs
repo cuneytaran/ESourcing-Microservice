@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Ordering.Application
 {
-    public static class DependencyInjection
+    public static class DependencyInjection//startup.cs içine gömülecek
     {
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {

@@ -33,6 +33,8 @@ namespace ESourcing.Products.Controllers
         #region Crud_Actions
 
         [HttpGet]
+        //typeof= dönüş tipini belirtmek için.
+        //HttpStatusCode Ok olduğunda Product tipinde liste bekleme işlemi.Başka tipte dönüş yapmayacağım
         [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
@@ -40,6 +42,8 @@ namespace ESourcing.Products.Controllers
             return Ok(products);
         }
 
+        //aşağadaki kodlar notfound da dönebilirim veya ok de
+        //ProducesResponseType=birden çok dönüş türü ve yolu olduğunda
         [HttpGet("{id:length(24)}", Name = "GetProduct")]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
@@ -56,9 +60,12 @@ namespace ESourcing.Products.Controllers
 
         [HttpPost]
         [ProducesResponseType(typeof(Product), (int)HttpStatusCode.Created)]
+        //FromBody= post larda FromBody üzerinden bize değerler gelir.Json formatta ve body sinde Product tipinde nesne gelmesi
         public async Task<ActionResult<Product>> CreateProduct([FromBody] Product product)
         {
             await _productRepository.Create(product);
+            //CreatedAtRoute=GetProduct isimli bir metoda talepte bulunuyor. Tahmin edeceğiniz üzere yeni eklenen ürünün id bilgisini kullanarak bir HTTP Get talebi yapmakta.
+            //GetProduct= yukarıdaki [HttpGet("{id:length(24)}", Name = "GetProduct")] gidecek gideceği yeri bilmesi için Name = "GetProduct" yazmalıyız
             return CreatedAtRoute("GetProduct", new { id = product.Id }, product);
         }
 

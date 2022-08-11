@@ -44,9 +44,9 @@ namespace Ordering.Infrastructure.Repositories.Base
             return await _dbContext.Set<T>().ToListAsync();
         }
 
-        public async Task<IEnumerable<T>> GetAsync(Expression<Func<T, bool>> predicate)
+        public async Task<IEnumerable<T>> GetAsync(Expression<Func<T, bool>> predicate)//lambda expression kullanmak için predicate kullanacağız
         {
-            return await _dbContext.Set<T>().Where(predicate).ToListAsync();
+            return await _dbContext.Set<T>().Where(predicate).ToListAsync();//x=>x.id==id anlamına geliyor bu sorgu. Expression<Func<T, bool>> predicate buradan dolayı böyle oluyor
         }
 
         public async Task<T> GetByIdAsync(int id)
@@ -57,9 +57,9 @@ namespace Ordering.Infrastructure.Repositories.Base
         public async Task<IEnumerable<T>> GetAsync(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeString = null, bool disableTracking = true)
         {
             IQueryable<T> query = _dbContext.Set<T>();
-            if (disableTracking) query = query.AsNoTracking();
+            if (disableTracking) query = query.AsNoTracking();//true ise getireceği neslere update, add, gibi kontrol etmesini engelliyor.hafızadaki verileri siliyor.
 
-            if (!string.IsNullOrWhiteSpace(includeString)) query = query.Include(includeString);
+            if (!string.IsNullOrWhiteSpace(includeString)) query = query.Include(includeString);//include ilişkili veritabanını getirir
 
             if (predicate != null) query = query.Where(predicate);
 
