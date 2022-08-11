@@ -1,4 +1,71 @@
-﻿db.KOLEKSIYON.find();
+﻿*** TÜM DÖKÜMANLAR ***
+https://hub.docker.com/
+
+*** Solution projeyi sağ tıkla  ve Open Folder in File Open tıkla ve aşağıdaki kodları çalıştır ***
+
+***CLOSE******docker yenilikler olduğunda temizleme yani docker kapatma 
+docker-compose down
+
+***BUILD******docker build yapma 
+docker-compose up --build -d
+
+***START******docker yeniden ayağa kaldırma
+docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
+
+***docker da yüklü imaj ları gösterir
+docker ps veya docker ps -a
+
+***docker deki imaj ları gösterir
+docker images
+
+***docker çalıştırma
+docker run
+
+***docker deki volumleri gösterme
+docker volumels
+
+***dockerdeki networkleri gösterme
+docker network ls
+
+*** docker continerlerinden birtanesini stop etme
+docker stop ContainerAdı
+
+*** docker container silme
+docker rm -f ContainerAdı
+
+***docker daki mongoyu ayağa kaldırma
+docker run -d -p 2701:2701 --name localmongo mongo
+veya 
+docker run --name sour -p 27017:27017 -d mongo
+
+
+*** docker çalışıyorsa aşağıdaki gibi göstermesi lazım ***
+ - Container esourcingsourcing  Started                                                                          
+ - Container sourcingdb         Running                                                                           
+ - Container esourcingproducts  Started
+
+ *** adres ***
+ http://localhost:8000/swagger/index.html
+
+ *** docker rabbitmq kurma
+ docker run -d --hostname my-rabbit --name some-rabbit -p 8080:15672 rabbitmq:3-management
+ veya
+ docker run -d --hostname my-rabbit --name some-rabbit -p 8080:15672 -p 15672:15672 -p5672:5672 rabbitmq:3-management
+ *************yukarıdaki 5672 portu test yazmak istediğimizde kullanabilinsin diye******
+
+ *** docker rabbitmq ayağa kaldırma
+ docker run -d --hostname my-rabbit --name RabbitMQAdı -p 15672:15672 rabbitmq:3-management
+
+ ** rabbitmq yu browserde çalıştırma
+ http://localhost:8080/
+ kullanıcı adı ve şifre= guest
+ 
+ 
+ *********************************************************************
+ docker kurarken. wsl diye seçenek var onun tikini kaldır. 
+kurulduktan sonra böcek işaretinden data delete kısmından w2 kısmını seç onuda kaldır. 
+ *********************************************************************
+ db.KOLEKSIYON.find();
 Metot çalıştırıldığında koleksiyonda yer alan veriler listelenir.
 
 db.kisiler.find();
@@ -115,7 +182,7 @@ namespace MongoDB101.API.Service
             _settings = settings;
             MongoClient client = new MongoClient(settings.ConnectionString);
             var db = client.GetDatabase(settings.Database);
-            _user = db.GetCollection<User>(settings.Collection); 
+            _user = db.GetCollection<User>(settings.Collection);
         }
 
 

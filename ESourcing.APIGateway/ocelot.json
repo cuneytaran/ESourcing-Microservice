@@ -7,7 +7,7 @@
       "DownstreamScheme": "http", //hangi yönetm ile gelecek
       "DownstreamHostAndPorts": [ //hangi projeye gideceği
         {
-          "Host": "esourcingproducts", //gideceği proje adı,docker-compose yml baktığımızda esourcingproducts olarak yazılmış. docker bunu tanıyacak
+          "Host": "esourcingproducts", //gideceği proje adı,docker-compose yml baktığımızda esourcingproducts olarak yazılmış. docker bunu tanıyacak.Container ismi yani docker-compose.override.ylm dosyasının içinde
           "Port": "80" //kullanıcağı port
         }
       ],
