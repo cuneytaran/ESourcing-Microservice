@@ -115,7 +115,7 @@ namespace MongoDB101.API.Service
             _settings = settings;
             MongoClient client = new MongoClient(settings.ConnectionString);
             var db = client.GetDatabase(settings.Database);
-            _user = db.GetCollection<User>(settings.Collection);
+            _user = db.GetCollection<User>(settings.Collection); 
         }
 
 
