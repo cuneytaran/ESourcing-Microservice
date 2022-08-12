@@ -18,7 +18,7 @@ namespace ESourcing.Infrastructure.Data
 
             try
             {
-                webAppContext.Database.Migrate();
+                webAppContext.Database.Migrate();// TODO:Otomatik migration işlemi uygulama
                 if (!webAppContext.AppUsers.Any())
                 {
                     webAppContext.AppUsers.AddRange(GetPreconfiguredOrders());

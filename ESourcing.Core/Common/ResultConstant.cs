@@ -1,5 +1,6 @@
 ﻿namespace ESourcing.Core.Common
 {
+    //TODO: Uzak sunucudaki cliente ulaşmak 8
     public static class ResultConstant
     {
         public const string RecordFound = "Record Found";

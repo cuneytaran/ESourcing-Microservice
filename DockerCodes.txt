@@ -1,6 +1,9 @@
 ﻿*** TÜM DÖKÜMANLAR ***
 https://hub.docker.com/
 
+*** docker otomatik ayağa kaldırma ****
+Solution sağ tık. startup seç. Multiple seç. içinden ayağa kalkması gereken startupları seç.
+
 *** Solution projeyi sağ tıkla  ve Open Folder in File Open tıkla ve aşağıdaki kodları çalıştır ***
 
 ***CLOSE******docker yenilikler olduğunda temizleme yani docker kapatma 

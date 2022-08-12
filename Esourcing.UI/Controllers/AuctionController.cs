@@ -37,8 +37,10 @@ namespace Esourcing.UI.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
+            //TODO: Uzak sunucudaki cliente ulaşmak 1
             //TODO:Product GetAll
             var productList = await _productClient.GetProducts();
+            //TODO: Uzak sunucudaki cliente ulaşmak 9
             if (productList.IsSuccess)
                 ViewBag.ProductList = productList.Data;
 

@@ -1,5 +1,6 @@
 ﻿namespace ESourcing.Core.Common
 {
+    //TODO: Uzak sunucudaki cliente ulaşmak 3
     public static class CommonInfo
     {
         public static string BaseAddress = "http://localhost:5000";

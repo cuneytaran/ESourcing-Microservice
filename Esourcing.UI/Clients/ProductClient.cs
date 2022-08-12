@@ -12,16 +12,21 @@ namespace Esourcing.UI.Clients
 {
     public class ProductClient
     {
-        public HttpClient _client { get; }
+        //TODO: Uzak sunucudaki cliente ulaşmak 2
+
+        public HttpClient _client { get; } //{ get; } ile readonly ile aynı
 
         public ProductClient(HttpClient client)
         {
             _client = client;
             _client.BaseAddress = new Uri(CommonInfo.BaseAddress);
+            //_client.BaseAddress = new Uri("www.google.com"); ile aynı
         }
 
+        //TODO: Uzak sunucudaki cliente ulaşmak 4
         public async Task<Result<List<ProductViewModel>>> GetProducts()
         {
+            //TODO: Uzak sunucudaki cliente ulaşmak 7
             var response = await _client.GetAsync("/Product");
             if (response.IsSuccessStatusCode)
             {

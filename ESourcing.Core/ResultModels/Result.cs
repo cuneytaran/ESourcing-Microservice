@@ -1,5 +1,6 @@
 ﻿namespace ESourcing.Core.ResultModels
 {
+    //TODO: Uzak sunucudaki cliente ulaşmak 6
     public class Result<T> : IResult
     {
         public bool IsSuccess { get ; set ; }

@@ -1,4 +1,4 @@
-using Esourcing.UI.Clients;
+ï»¿using Esourcing.UI.Clients;
 using ESourcing.Core.Entities;
 using ESourcing.Core.Repositories;
 using ESourcing.Core.Repositories.Base;
@@ -30,12 +30,12 @@ namespace Esourcing.UI
         {
             //appsettings.json dan connection verisini oku
             services.AddDbContext<WebAppContext>(options => options.UseSqlServer(Configuration.GetConnectionString("IdentityConnection")));
-            //Identity yi tanýtma
+            //Identity yi tanÃ½tma
             services.AddIdentity<AppUser, IdentityRole>(opt =>
             {
                 opt.Password.RequiredLength = 4;
-                opt.Password.RequireNonAlphanumeric = false;//herhangi bir yýldýz ünlem gibi iþarete zorunlumu
-                opt.Password.RequireLowercase = false;//hepsi küçük harf mi olmalý
+                opt.Password.RequireNonAlphanumeric = false;//herhangi bir yÃ½ldÃ½z Ã¼nlem gibi iÃ¾arete zorunlumu
+                opt.Password.RequireLowercase = false;//hepsi kÃ¼Ã§Ã¼k harf mi olmalÃ½
                 opt.Password.RequireUppercase = false;
                 opt.Password.RequireDigit = false;
             }).AddDefaultTokenProviders().AddEntityFrameworkStores<WebAppContext>();
@@ -48,6 +48,7 @@ namespace Esourcing.UI
                 opt.IdleTimeout = TimeSpan.FromMinutes(20);
             });
 
+            //Repository lerin eklenmesi
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped(typeof(IUserRepository), typeof(UserRepository));
 
@@ -68,7 +69,7 @@ namespace Esourcing.UI
             });
 
             services.AddHttpClient();
-
+            //TODO: Uzak sunucudaki cliente ulaÅŸmak 10
             services.AddHttpClient<ProductClient>();
             services.AddHttpClient<AuctionClient>();
             services.AddHttpClient<BidClient>();
