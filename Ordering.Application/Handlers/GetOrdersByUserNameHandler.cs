@@ -14,7 +14,7 @@ namespace Ordering.Application.Handlers
 {
     public class GetOrdersByUserNameHandler : IRequestHandler<GetOrdersBySellerUsernameQuery, IEnumerable<OrderResponse>>//using MediatR = gelen bilgi ve gönderilen bilgi olarak ayarlama yapabiliyorsun
     {
-    {
+    
         private readonly IOrderRepository _orderRepository;
         private readonly IMapper _mapper;
 
