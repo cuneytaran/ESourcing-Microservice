@@ -12,7 +12,7 @@ docker-compose up --build -d
 ***START******docker yeniden ayağa kaldırma
 docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
 
-*** MSSQL *** KURMA
+*** MSSQL *** yeni MSSQL ekleme
 docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Odb12345678" -p 1433:1433 --name WebAppDb -d mcr.microsoft.com/mssql/server:2017 -latest
 
 ***docker da yüklü imaj ları gösterir
