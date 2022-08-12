@@ -34,8 +34,8 @@ namespace Esourcing.UI
             services.AddIdentity<AppUser, IdentityRole>(opt =>
             {
                 opt.Password.RequiredLength = 4;
-                opt.Password.RequireNonAlphanumeric = false;
-                opt.Password.RequireLowercase = false;
+                opt.Password.RequireNonAlphanumeric = false;//herhangi bir yýldýz ünlem gibi iþarete zorunlumu
+                opt.Password.RequireLowercase = false;//hepsi küçük harf mi olmalý
                 opt.Password.RequireUppercase = false;
                 opt.Password.RequireDigit = false;
             }).AddDefaultTokenProviders().AddEntityFrameworkStores<WebAppContext>();

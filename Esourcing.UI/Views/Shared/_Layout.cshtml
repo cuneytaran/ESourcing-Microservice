@@ -1,4 +1,5 @@
-﻿
+﻿@*//TODO : USER BİLGİLERİNİ LAYOUTTA GÖSTERTEME VE SOL MENÜ YETKİ AYARI*@
+@*_ViewImports içinde modeller ekleniyor yani @inject SignInManager<AppUser> SignInManager bundan bahsediyorum*@
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<AppUser> SignInManager
 @inject UserManager<AppUser> UserManager
@@ -55,6 +56,7 @@
 
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        @*User Bilgileri*@
                         @if (SignInManager.IsSignedIn(User))
                         {
                             <li class="nav-item">

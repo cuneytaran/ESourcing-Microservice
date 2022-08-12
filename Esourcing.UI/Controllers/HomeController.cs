@@ -8,8 +8,10 @@ using System.Threading.Tasks;
 
 namespace Esourcing.UI.Controllers
 {
+    //TODO: HTML Validasyon eklemek için. Esorurcing.UI sağ tıkla. Add- Client Side Library den cdnjs seçili olsun Librarary kısmına jquery-validate yaz aşağıda liste çıkacak sonra aşağıdan install yap. bu kontrol için iki tane şey eklenecek birincisi jquery-validate ve ikincisi jquery-validation-unobtrusive  snora layout aç   <script src="~/lib/jquery/dist/jquery.js"></script> altına  ve wwwroot içinde lib içinde   <script src="~/lib/jquery-validate/jquery.validate.js"></script> ve     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script> ekle yani sürükle bırak jquery nin altına
     public class HomeController : Controller
     {
+        //UserManager ve SignInManager=identityden gelen özellik
         public UserManager<AppUser> _userManager { get; }
         public SignInManager<AppUser> _signInManager { get; }
 
@@ -33,14 +35,19 @@ namespace Esourcing.UI.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel loginModel, string returnUrl)
         {
+            //string returnUrl=login olduktan sonra aynı adrese geri dönme
             returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
                 var user = await _userManager.FindByEmailAsync(loginModel.Email);
                 if (user != null)
                 {
+                    //Tüm kullanıcıları çıkış yaptırtıyor
                     await _signInManager.SignOutAsync();
 
+                    //user bilgisini göndericeğim ve bu bilgilerle girişi kontrol et
+                    //birinci false=beni hatırla
+                    //ikinci false=kaç kez yanlış giriş yaparsa onu belli süre engelleme
                     var result = await _signInManager.PasswordSignInAsync(user, loginModel.Password, false, false);
 
                     if (result.Succeeded)
@@ -104,7 +111,7 @@ namespace Esourcing.UI.Controllers
 
         public IActionResult Logout()
         {
-            _signInManager.SignOutAsync();
+            _signInManager.SignOutAsync();//tüm kullanıcıları sistemden çıkar
             return RedirectToAction("Login");
         }
     }

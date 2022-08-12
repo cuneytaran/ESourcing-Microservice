@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace ESourcing.Core.Repositories.Base
 {
-    public interface IRepository<T> where T : class, new()
+    public interface IRepository<T> where T : class, new()//new()=class ve new lenebilir.
     {
-        Task<IReadOnlyList<T>> GetAllAsync();
+        Task<IReadOnlyList<T>> GetAllAsync();//IReadOnlyList=perfomans yükseltmesi
         Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>> predicate);
         Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>> predicate = null,
                                         Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
-                                        string includeString = null,
-                                        bool disableTracking = true);
+                                        string includeString = null,//birden fazla tablo erişebilirlik
+                                        bool disableTracking = true);//bilgileri durdurulsun veya durdurulmasın, kod kırılsın kırılmasın
         Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>> predicate = null,
                                        Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
                                        List<Expression<Func<T, object>>> includes = null,

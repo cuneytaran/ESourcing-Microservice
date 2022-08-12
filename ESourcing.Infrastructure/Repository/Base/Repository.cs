@@ -62,10 +62,10 @@ namespace ESourcing.Infrastructure.Repository.Base
         {
             IQueryable<T> query = _dbContext.Set<T>();
             if (disableTracking)
-                query = query.AsNoTracking();
+                query = query.AsNoTracking();//sadece sorgu yapabileceğim şekilde bu datayı getir.get ilep update datasını karışlaştırmasını engelleme
 
             if (includes != null)
-                query = includes.Aggregate(query, (current, include) => current.Include(include));
+                query = includes.Aggregate(query, (current, include) => current.Include(include));//Aggregate =query ver bana, mevcut var olanı ver bana ve yapılacak olanı ver bana. sonra ne yapmamı istiyorsun onu söyle
 
             if (predicate != null)
                 query = query.Where(predicate);
@@ -81,7 +81,7 @@ namespace ESourcing.Infrastructure.Repository.Base
 
         public async Task UpdateAsync(T entity)
         {
-            _dbContext.Entry(entity).State = EntityState.Modified;
+            _dbContext.Entry(entity).State = EntityState.Modified;//State durumunu AsNoTracking göre yakalıyor. o yüzden yukarıda buna bakma diyoruz
             await _dbContext.SaveChangesAsync();
         }
     }
