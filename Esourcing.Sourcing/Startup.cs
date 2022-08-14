@@ -94,13 +94,14 @@ namespace Esourcing.Sourcing
 
             #endregion
 
+            //TODO:CORS ekleme 1
             services.AddCors(o => o.AddPolicy("CorsPolicy", builder =>
             {
-                builder.AllowAnyOrigin()
-                        .AllowAnyMethod()
-                        .AllowAnyHeader()
-                        .AllowCredentials()
-                        .WithOrigins("https://localhost:44398");
+                builder.AllowAnyOrigin()//herhangi bir kısıtlama koyma
+                        .AllowAnyMethod()//metot kısıtı koyma
+                        .AllowAnyHeader()//header kısıtı koyma
+                        .AllowCredentials()//credentitals kısıtı koyma
+                        .WithOrigins("https://localhost:44398");//sana bir bir url veriyorum ve projenin url adresini kullan
             }));
 
             //TODO: SignalR kurulumu 2
@@ -118,6 +119,7 @@ namespace Esourcing.Sourcing
             app.UseRouting();
 
             app.UseAuthorization();
+            //TODO:CORS ekleme 2
             app.UseCors("CorsPolicy");
 
             app.UseEndpoints(endpoints =>

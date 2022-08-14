@@ -37,6 +37,7 @@ document.getElementById("sendButton").addEventListener("click", function (event)
 
     SendBid(sendBidRquest);
     event.preventDefault();
+   //preventDefault= başlagıç default değerine döndür
 });
 
 document.getElementById("finishButton").addEventListener("click", function (event) {

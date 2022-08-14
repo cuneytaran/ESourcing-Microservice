@@ -12,7 +12,7 @@
         }
       ],
       "UpstreamHttpMethod": [ "GET", "POST", "PUT" ], //üç tane servisin adları aynıydı. hangi yöntem olduğnu ayırmak için kullandık
-      "UpstreamPathTemplate": "/Product" //hangi http isteği yapacağı. Api de arkada versiyonları değişsse bile ön tarafta aynı path de gelmesini sağlıyor
+      "UpstreamPathTemplate": "/Product" //hangi http isteği yapacağı. Api de arkada versiyonları değişsse bile ön tarafta aynı path de gelmesini sağlıyor.Yani beni bundan sonra /api/v1/Product böyle değilde /Product  bu şekilde çağır
     },
     {
       "DownstreamPathTemplate": "/api/v1/Product/{id}",
