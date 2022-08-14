@@ -3,7 +3,7 @@
   "Routes": [
     //Product API
     {
-      "DownstreamPathTemplate": "/api/v1/Product", //gelen istek nereye yönlendireceği
+      "DownstreamPathTemplate": "/api/v1/Product", //gelen istek nereye yönlendireceği. localda çalıştırdığında kullanacağın adres
       "DownstreamScheme": "http", //hangi yönetm ile gelecek
       "DownstreamHostAndPorts": [ //hangi projeye gideceği
         {
@@ -12,7 +12,7 @@
         }
       ],
       "UpstreamHttpMethod": [ "GET", "POST", "PUT" ], //üç tane servisin adları aynıydı. hangi yöntem olduğnu ayırmak için kullandık
-      "UpstreamPathTemplate": "/Product" //hangi http isteği yapacağı. Api de arkada versiyonları değişsse bile ön tarafta aynı path de gelmesini sağlıyor.Yani beni bundan sonra /api/v1/Product böyle değilde /Product  bu şekilde çağır
+      "UpstreamPathTemplate": "/Product" //hangi http isteği yapacağı. Api de arkada versiyonları değişsse bile ön tarafta aynı path de gelmesini sağlıyor.Yani beni bundan sonra /api/v1/Product böyle değilde /Product  bu şekilde çağır.docker çalıştırdığında kullanacağın adres
     },
     {
       "DownstreamPathTemplate": "/api/v1/Product/{id}",
