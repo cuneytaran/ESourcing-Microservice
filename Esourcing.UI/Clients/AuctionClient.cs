@@ -21,6 +21,7 @@ namespace Esourcing.UI.Clients
             _client.BaseAddress = new Uri(CommonInfo.BaseAddress);
         }
 
+
         public async Task<Result<List<AuctionViewModel>>> GetAuctions()
         {
             var response = await _client.GetAsync("/Auction");
@@ -34,6 +35,7 @@ namespace Esourcing.UI.Clients
             }
             return new Result<List<AuctionViewModel>>(false, ResultConstant.RecordNotFound);
         }
+
 
         public async Task<Result<AuctionViewModel>> CreateAuction(AuctionViewModel model)
         {
@@ -52,6 +54,7 @@ namespace Esourcing.UI.Clients
             }
             return new Result<AuctionViewModel>(false, ResultConstant.RecordCreateNotSuccessfully);
         }
+
 
         public async Task<Result<AuctionViewModel>> GetAuctionById(string id)
         {

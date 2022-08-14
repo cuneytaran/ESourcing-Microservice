@@ -1,4 +1,4 @@
-using Esourcing.Sourcing.Data;
+﻿using Esourcing.Sourcing.Data;
 using Esourcing.Sourcing.Data.Interface;
 using Esourcing.Sourcing.Repositories;
 using Esourcing.Sourcing.Repositories.Interfaces;
@@ -103,6 +103,7 @@ namespace Esourcing.Sourcing
                         .WithOrigins("https://localhost:44398");
             }));
 
+            //TODO: SignalR kurulumu 2
             services.AddSignalR();
         }
 
@@ -121,7 +122,8 @@ namespace Esourcing.Sourcing
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapHub<AuctionHub>("/auctionhub");
+                //TODO: SignalR kurulumu 3
+                endpoints.MapHub<AuctionHub>("/auctionhub");//acutionhub ile ulaşmak isteniliyor
                 endpoints.MapControllers();
             });
 

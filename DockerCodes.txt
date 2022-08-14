@@ -71,6 +71,24 @@ docker run --name sour -p 27017:27017 -d mongo
  docker kurarken. wsl diye seçenek var onun tikini kaldır. 
 kurulduktan sonra böcek işaretinden data delete kısmından w2 kısmını seç onuda kaldır. 
  *********************************************************************
+
+
+ *** MONGO DB ******
+https://www.mongodb.com/try
+mongo db setup
+ProgramFiles-MongoDB-Server-4.4-bin
+mongod.cfg dosyasının içini notepad ile aç. ayarların yapıldığı. ayar vs.. içinde var. ayarlamayı ordan yapacaksın
+arayüz setup
+https://robomongo.org/
+
+Eğer bir değişiklik yaptıysan bunu mongo db görmesini istiyorsan. Bilgisayarım sağ tık Servisler kısmında MongoDb göreceksin onu yeniden başlatman gerekiyor.
+
+ Database - Database
+ Table  - Collection
+ Row - Document
+ Column - Field
+
+
  db.KOLEKSIYON.find();
 Metot çalıştırıldığında koleksiyonda yer alan veriler listelenir.
 
@@ -225,3 +243,6 @@ namespace MongoDB101.API.Service
 
     }
 }
+
+
+********************** SignIR setup ***************************

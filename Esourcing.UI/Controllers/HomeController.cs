@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 
 namespace Esourcing.UI.Controllers
 {
+    //TODO: SignalR kurulumu 4 
+    //SignalR client tarafına eklemek için projeyi sağ tıkla Esourcing.UI den bahsediyorum. Manage client side librarıy tıkla.Provider kısmında cdnjs olsun  Librarıy kısmına microsof-signalr seç ve install yap. Bu dosya wwwwroot altında lib dosyasının altına ekledi. microsoft-signalr olarak
+    ////TODO: SignalR kurulumu 5 views içindeki  detail.cshtml içinde en alt satırda oraya git
+
     //TODO: HTML Validasyon eklemek için. Esorurcing.UI sağ tıkla. Add- Client Side Library den cdnjs seçili olsun Librarary kısmına jquery-validate yaz aşağıda liste çıkacak sonra aşağıdan install yap. bu kontrol için iki tane şey eklenecek birincisi jquery-validate ve ikincisi jquery-validation-unobtrusive  snora layout aç   <script src="~/lib/jquery/dist/jquery.js"></script> altına  ve wwwroot içinde lib içinde   <script src="~/lib/jquery-validate/jquery.validate.js"></script> ve     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script> ekle yani sürükle bırak jquery nin altına
     public class HomeController : Controller
     {
